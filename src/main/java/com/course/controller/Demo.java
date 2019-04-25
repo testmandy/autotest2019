@@ -44,8 +44,7 @@ public class Demo {
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     @ApiOperation(value = "添加用户",httpMethod = "POST")
     public int addUser(@RequestBody User user){
-        int result = template.insert("addUser",user);
-        return result;
+        return template.insert("addUser",user);
     }
 
     @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
