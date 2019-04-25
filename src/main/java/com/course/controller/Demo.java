@@ -38,8 +38,7 @@ public class Demo {
     @ApiOperation(value = "获取用户数",httpMethod = "GET")
     public String getUserList(){
         List resultList = template.selectList("getUserList");
-        String result = JSONArray.toJSONString(resultList);
-        return result;
+        return JSONArray.toJSONString(resultList);
     }
 
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
