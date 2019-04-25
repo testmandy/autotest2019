@@ -1,5 +1,6 @@
 package com.course.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.course.model.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -7,6 +8,9 @@ import lombok.extern.log4j.Log4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.Map;
+
 
 @Log4j
 @RestController
@@ -26,8 +30,16 @@ public class Demo {
 
     @RequestMapping(value = "/getUserInfo",method = RequestMethod.GET)
     @ApiOperation(value = "获取用户数",httpMethod = "GET")
-    public int getUserInfo(){
-        return template.selectOne("getUserInfo");
+    public Map getUserInfo(@RequestParam int id){
+        return template.selectOne("getUserInfo",id);
+    }
+
+    @RequestMapping(value = "/getUserList",method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户数",httpMethod = "GET")
+    public String getUserList(){
+        List resultList = template.selectList("getUserList");
+        String result = JSONArray.toJSONString(resultList);
+        return result;
     }
 
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
@@ -43,8 +55,8 @@ public class Demo {
         return template.update("updateUser",user);
     }
 
-    @RequestMapping(value = "/deleteUser",method = RequestMethod.POST)
-    @ApiOperation(value = "删除用户",httpMethod = "POST")
+    @RequestMapping(value = "/deleteUser",method = RequestMethod.GET)
+    @ApiOperation(value = "删除用户",httpMethod = "GET")
     public int delUser(@RequestParam int id){
         return template.delete("deleteUser",id);
     }

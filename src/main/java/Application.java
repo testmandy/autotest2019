@@ -4,8 +4,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.testng.annotations.Test;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PreDestroy;
 
@@ -19,7 +17,7 @@ import javax.annotation.PreDestroy;
 //        SpringApplication.run(Application.class,args);
 //    }
 //}
-//@Test
+
 public class Application {
     private static ConfigurableApplicationContext context;
 
